@@ -3,13 +3,13 @@
 // Vintage Barbershop Project
 // =========================
 //-----COM Elements -------
-const yearEl = document.getElementById("Year");
+const yearEl = document.getElementById("year");
 const menuBtn = document.getElementById("menuBtn");
 const mmobileMenu = document.getElementById("mobileMenu");
 const ctaBtn = document.getElementById("ctaBtn");
 const callBtn = document.getElementById("callBtn");
 const phoneLink = document.getElementById("phoneLink");
-const heading = document.getElementById("heading");
+const heading = document.getElementById("heroHeading");
 
 //--------Helpers / Funtions --------
 
@@ -70,9 +70,22 @@ if(ctaBtn) {
         // If you later set phoneLink href to tel:, this will work perfectly.
         // For now, this is a beginner-friendly placeholder.
         if(phoneLink) {
-            updateHeadingText("call us at" + phoneLink.textContent);
+            updateHeadingText("Booking coming next - great choice!");
         } else { 
 
         }
     });
-}
+    
+    // 5) Call Button: try to use the phone number in the footer
+if (callBtn) {
+  callBtn.addEventListener("click", () => {
+    // If you later set phoneLink href to tel:, this will work perfectly.
+    // For now, this is a beginner-friendly placeholder.
+    if (phoneLink) {
+      updateHeadingText("Call us at " + phoneLink.textContent);
+    } else {
+      updateHeadingText("Call feature coming next!");
+    }
+  });
+};
+};
