@@ -86,7 +86,36 @@
           <button class="btn btn-secondary" id="callBtn">Call Us</button>
         </div>
       </div>
-    </section>
+
+
+    <!--===Calendar Section===-->
+    <div class="container booking-layout">
+      <div class="calendar-card">
+      <div class="calendar-header"></div>
+      <button class="calendar-nav-btn" id="prevMonthBtn">←</button>
+      <h3 id="calendarMonthLabel">Month Year</h3>
+      <button class="calendar-nav-btn" id="nextMonthBtn">→</button>
+      </div>
+
+      <div class="calendar-weekdays">
+<span>Sun</span>>
+<span>Mon</span>
+<span>Tues</span>
+<span>Wed</span>
+<span>Thurs</span>
+<span>Fri</span>
+<span>Sat</span>
+</div>
+
+<div class="calendar-grid" id="calendarGrid"></div>
+</div>
+
+<div class="booking-panel">
+ <h3 class="booking-panel-title">Book Your Appointment</h3> 
+
+ <p class="select"
+</div>
+
     <!--====Footer Section====-->
     <footer class="site-footer" id="footer">
       <div class="container footer-inner">
@@ -127,7 +156,22 @@
         </p>
       </div>
     </footer>
+    <!----  Service Details Moda ---->
+<div class ="service-modal" id= "serviceModal" aria-hidden="true">
+<div class="service-modal-overlay" id="serviceModalOverlay"></div>
+<div class="service-modal-content" role="dialog" aria-labeledby="serviceModaltitle">
+  <button  class="service-modal-close" id="serviceModalClose" aria-label="Close modal">
+    x
+  </button>
+  <h3 id="serviceModalTitle">Service Details</h3>
+  <p id="serviceModalPrice" class="service-modal-price"></p>
+  <ul id="serviceModalList" class="service-modal-list"></ul>
+</div>
+</div>
+
+
     <!--JS-->
     <script src="js/main.js"></script>
+    <script src="js/calendar.js"></script>
   </body>
 </html>
