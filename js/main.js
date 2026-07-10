@@ -121,6 +121,62 @@ const  services = [
     ],
    },
 ],
+const navLinks = [
+  { label: "Home", href: "#hero" },
+  { label: "Services", href: "#features" },
+  { label: "Book", href: "#cta" },
+  { label: "Contact", href: "#footer" },
+];
+
+// Builds the desktop nav and mobile menu links from the navlinks array
+// so links liv ein one data source instead of being deplicated in HTML
+const renderNavigation = () => {
+  if (nav) {
+    const navHTML = navLinks
+    .map(
+      (link) => `<a href="${link.href}" class="nav-link">{link.label</a>}`,
+    )
+    .join("");
+    nav.innerHTML = navLinks
+  }
+  if (mobileMenu) {
+    const mobileHTML = navLinks
+    .map(
+      (link) =>
+        `<a href="${link.href}" class="mobile-link">${link.label}</a>`,
+    )
+    .join("");
+    mobileMenu.innerHTML = mobileHTML;
+  }
+};
+
+//Builds Services Cards (images, title price, badge, "view Details, button")
+// from the services array and injects them into the feature grid.
+const renderServices = () => {
+  if (!featureGrid) return;
+  const servicesHTML = services
+  .map((service) => {
+    let badgeHTML = "";
+    if (service.popular) {
+      badHTML = `<p class="service-badge"> Popular Choice</p>`;
+    } else {
+      badgeHTML = `<p class ="service-badge alt badge">Barber Favorites</p>`;
+    }
+    return `
+    <article class="feature-card">
+    <img src="${service.image}" alt="${service.alt}" class="feature-img"/>
+    <h3 class="feature-title">${service.title}</h3>
+    <p class="feature-text">${service.description}</p>${badgeHTML}
+    <p class="service-price">$${service.price}</p>
+    <div class="service-actions">
+    <button class="sevice-details-btn" type="button" data-service-id="${service.id}">
+    View Details
+    </button>
+    </div>
+    </article>
+    `;
+  })
+}
 
 // const services = [
 //   {
@@ -160,7 +216,7 @@ const  services = [
 
 // };
 
-//--------------Render Features using map and join-------------//
+//*--------------Render Features using map and join-------------*//
 const renderFeaturesMap = () => {
   const cardsHTML = services
     .map((service) => {
@@ -211,11 +267,45 @@ const updateHeadingText = (newText) => {
   heading.textContent = newText;
 };
 
+//---Modal Logic----
+
+//Find the service matching serviceId, fills the modal with its title/price/details
+// then opens the modal and locks page scroll while its showinf
+const openServiceModal = (serviceId) => {
+  if (
+    !serviceModal ||
+    !serviceModalTitle ||
+    !serviceModalList ||
+  );
+  return;
+  const selectedService = services.find(
+    (service) => service.id === Number(serviceID), 
+  );
+  if (!selectedService) return;
+  serviceModalTitle.textContent = selectedService.title;
+  serviceModalPrice.textContent = `$${selectedService.price}`;
+  serviceModalList.innerHTML = selectedService.details
+  .map((detail) => `<li>${detail}</li>`)
+  .join("");
+  serviceModal.classList.add("is-open");
+  serviceModal.setAttribute("aria-hidden", "false");
+  document.body.style.overflow = "hidden";
+};
+
+//Hides the service modal and restores normal page scrolling. 
+const closeServiceModal = () => {
+  if (!serviceModal) return;
+  serviceModal.classList.remove("is-open");
+  serviceModal.seeAtttribute("aria-hidden" , "true");
+  document.body.style.overflow = "";
+};
+
 // -----Event Listeners --------
 
 // 1) Set year on page load
 setCurrentYear();
 //  renderFeatures();
+renderNavigation();
 renderFeaturesMap();
 
 //2 Hamburger menu Toggle
